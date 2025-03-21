@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Search</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<header>
+    <div class="navbar bg-base-100 shadow-sm">
+        <div class="flex-1">
+            <a href="./index.html" class="btn btn-ghost text-xl">Country</a>
+        </div>
+        <div class="flex gap-2">
+            <form id="form">
+                <input type="text" id="input" placeholder="Search country..." class="input input-bordered w-36 md:w-auto" />
+            </form>
+
+        </div>
+    </div>
+</header>
+
+<div class="flex justify-center my-4">
+    <button id="sort-btn" class="btn btn-secondary">Sort by Name  ↓</button>
+</div>
+
+<main>
+    <div class="container mx-auto p-4">
+        <div class="wrapper grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+    </div>
+</main>
+
+<script src="./main.js"></script>
+</body>
+</html>
