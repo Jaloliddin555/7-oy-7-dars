@@ -45,8 +45,19 @@ function displayCountries(countries) {
                 <p class="text-sm">${country.name.official}</p>
                 <p class="text-sm">Population: ${country.population.toLocaleString()}</p>
                 <p class="text-sm">Region: ${country.region}</p>
+                <p><strong>Languages:</strong> ${country.languages ? Object.values(country.languages).join(", ") : "N/A"}</p>
                 <div class="card-actions justify-end">
-                    <button class="btn btn-primary">More</button>
+<button class="btn" 
+    onclick="openModal('${country.name.common}', 
+                        '${country.flags.png}', 
+                        '${country.name.official}', 
+                        '${country.population}', 
+                        '${country.continents[0]}', 
+                        '${country.capital?.[0] || 'Mavjud emas'}')">
+    Open Modal
+</button>
+
+
                 </div>
             </div>
         </div>`;
@@ -65,8 +76,59 @@ userForm.addEventListener("submit", (event) => {
     }
 });
 
+function openModal(name, flag, official, population, continent, capital) {
+    const modal = document.getElementById("my_modal_3");
+    
+    if (!modal) {
+        console.error("Modal not found!");
+        return;
+    }
+
+    modal.querySelector(".text-lg").innerText = name;
+    modal.querySelector(".py-4").innerHTML = `
+        <img src="${flag}" class="w-full h-40 object-cover rounded-lg" />
+        <p><strong>Rasmiy nomi:</strong> ${official}</p>
+        <p><strong>Aholisi:</strong> ${Number(population).toLocaleString()} kishi</p>
+        <p><strong>Qit'asi:</strong> ${continent}</p>
+        <p><strong>Poytaxti:</strong> ${capital}</p>
+        
+    `;
+
+    try {
+        modal.showModal();
+    } catch {
+        modal.style.display = "block"; // Qo‘shimcha yechim
+    }
+}
+
+
+
 sortButton.addEventListener("click", () => {
     sortAscending = !sortAscending;
     sortAndDisplay();
     sortButton.textContent = sortAscending ? "Sort by Name ↓" : "Sort by Name ↑";
 });
+
+const themeToggle = document.getElementById("theme-toggle");
+const htmlElement = document.documentElement;
+
+function setTheme(theme) {
+    if (theme === "dark") {
+        htmlElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
+        themeToggle.textContent = "Light Mode";
+    } else {
+        htmlElement.setAttribute("data-theme", "light");
+        localStorage.setItem("theme", "light");
+        themeToggle.textContent = "Dark Mode";
+    }
+}
+
+// Check and apply saved theme
+const savedTheme = localStorage.getItem("theme") || "dark";
+setTheme(savedTheme);
+
+themeToggle.addEventListener("click", () => {
+    setTheme(htmlElement.getAttribute("data-theme") === "dark" ? "light" : "dark");
+});
+

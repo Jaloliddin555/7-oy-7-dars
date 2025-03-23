@@ -15,13 +15,18 @@
             <a href="./index.html" class="btn btn-ghost text-xl">Country</a>
         </div>
         <div class="flex gap-2">
-            <form id="form">
-                <input type="text" id="input" placeholder="Search country..." class="input input-bordered w-36 md:w-auto" />
-            </form>
-
+            <div class="flex gap-2">
+                <form id="form">
+                    <input type="text" id="input" placeholder="Search country..." class="input input-bordered w-36 md:w-auto" />
+                    <button type="submit" class="btn">Search</button>
+                </form>
+                <button id="theme-toggle" class="btn btn-outline">Dark mode</button>
+            </div>
+            
         </div>
     </div>
 </header>
+
 
 <div class="flex justify-center my-4">
     <button id="sort-btn" class="btn btn-secondary">Sort by Name  ↓</button>
@@ -32,6 +37,21 @@
         <div class="wrapper grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
     </div>
 </main>
+
+
+<dialog id="my_modal_3" class="modal">
+    <div class="modal-box">
+      <h3 class="text-lg font-bold">Country Info</h3>
+      <div class="py-4"></div>
+      <div class="modal-action">
+        <form method="dialog">
+          <button class="btn">Close</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+  
+
 
 <script src="./main.js"></script>
 </body>
